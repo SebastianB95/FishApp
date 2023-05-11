@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishApp", "FishApp\FishApp.csproj", "{B6D75ED9-A82A-4A80-B953-D240718D8115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishApp.Tests", "FishApp.Tests\FishApp.Tests.csproj", "{BCDE0335-A434-400E-A286-E37313EBF651}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6D75ED9-A82A-4A80-B953-D240718D8115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D75ED9-A82A-4A80-B953-D240718D8115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D75ED9-A82A-4A80-B953-D240718D8115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D75ED9-A82A-4A80-B953-D240718D8115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCDE0335-A434-400E-A286-E37313EBF651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCDE0335-A434-400E-A286-E37313EBF651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCDE0335-A434-400E-A286-E37313EBF651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCDE0335-A434-400E-A286-E37313EBF651}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA3E937D-E15F-491B-B0F1-1841F9043CA1}
+	EndGlobalSection
+EndGlobal
