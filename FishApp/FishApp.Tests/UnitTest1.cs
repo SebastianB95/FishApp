@@ -3,7 +3,7 @@ namespace FishApp.Tests
     public class Tests
     {
         [Test]
-        public void FishGradesStatistic()
+        public void FishTest()
         {
             var fish = new FishInMemory("Jesiotr", "15kg", "15:02");
             fish.AddGrade(5);
