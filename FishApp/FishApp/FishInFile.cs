@@ -3,7 +3,9 @@
     public class FishInFile : FishBase
     {
         private const string fileName = "gradesFish.txt";
+
         public override event GradeAddedDelegate GradeAdded;
+
         public FishInFile(string name, string weight, string time)
              : base(name, weight, time)
         {
@@ -27,27 +29,14 @@
                 throw new Exception("Za duza ocena");
             }
         }
-        public override void AddGrade(int grade)
-        {
-            this.AddGrade((float)grade);
-        }
-        public override void AddGrade(string grade)
-        {
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else
-            {
-                throw new Exception("Prosze podac cyfre");
-            }
-        }
+       
         public override Statistics GetStatistics()
         {
             var gradesFromFile = this.ReadGradesFromFile();
             var result = this.CountStatistics(gradesFromFile);
-            return (Statistics)result;
+            return result;
         }
+
         private List<float> ReadGradesFromFile()
         {
             var grades = new List<float>();
@@ -66,6 +55,7 @@
             }
             return grades;
         }
+
         private Statistics CountStatistics(List<float> grades)
         {
             {

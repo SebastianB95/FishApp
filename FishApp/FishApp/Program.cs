@@ -1,4 +1,6 @@
 ﻿using FishApp;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 Console.WriteLine("---------------------------------------------------------");
 Console.WriteLine("Witam wedkarzu w aplikacji do oceny twoich zlowionych ryb");
@@ -14,15 +16,9 @@ Console.WriteLine("Podaj wage ryby");
 var weight = Console.ReadLine();
 Console.WriteLine("Podaj czas zlowienia ryby");
 var time = Console.ReadLine();
-FishInFile fish = new(name, weight, time);
-FishInMemory fish1 = new(name, weight, time);
-fish.GradeAdded += FishGradeAdded;
-void FishGradeAdded(object sender, EventArgs args)
-{
-    Console.WriteLine("------------------------------------------");
-    Console.WriteLine($"Dodano Ocene");
-    Console.WriteLine("------------------------------------------");
-}
+FishInFile fishInFile = new(name, weight, time);
+FishInMemory fishInMemory = new(name, weight, time);
+fishInFile.GradeAdded += FishGradeAdded;
 {
     while (true)
     {
@@ -34,8 +30,8 @@ void FishGradeAdded(object sender, EventArgs args)
         }
         try
         {
-            fish.AddGrade(input);
-            fish1.AddGrade(input);
+            fishInFile.AddGrade(input);
+            fishInMemory.AddGrade(input);
         }
         catch (Exception ex)
         {
@@ -43,6 +39,7 @@ void FishGradeAdded(object sender, EventArgs args)
         }
     }
 }
+
 {
     while (true)
     {
@@ -55,25 +52,20 @@ void FishGradeAdded(object sender, EventArgs args)
         {
             case "A":
             case "a":
-                var statistic = fish.GetStatistics();
-                Console.WriteLine($"Nazwa to :{name}  Waga Ryby:  {weight}KG  Czas Zlowienia Ryby:{time}");
-                Console.WriteLine($"Minimalna Ocena Ryby:   {statistic.Min}");
-                Console.WriteLine($"Maksymalna Ocena Ryby:   {statistic.Max}");
-                Console.WriteLine($"Srednia Ocen Ryby:   {statistic.Average:N2}");
-                Console.WriteLine($"Suma Wszystkich Ocen:   {statistic.Sum}/50");
+
+                AddToFile();
 
                 break;
             case "B":
             case "b":
-                var statistic1 = fish1.GetStatistics();
-                Console.WriteLine($"Nazwa to :{name}  Waga Ryby:  {weight}KG  Czas Zlowienia Ryby:{time}");
-                Console.WriteLine($"Minimalna Ocena Ryby: {statistic1.Min}");
-                Console.WriteLine($"Maksymalna Ocena Ryby: {statistic1.Max}");
-                Console.WriteLine($"Srednia Ocen Ryby: {statistic1.Average:N2}");
-                Console.WriteLine($"Suma Wszystkich Ocen: {statistic1.Sum}/50");
+
+                AddToMemory();
+
                 break;
             default:
+
                 Console.WriteLine("Niepoprawna litera");
+
                 continue;
         }
         if (fishInput == "A" || fishInput == "a" || fishInput == "b" || fishInput == "B")
@@ -81,4 +73,24 @@ void FishGradeAdded(object sender, EventArgs args)
             break;
         }
     }
+
+    void AddToFile()
+    {
+        var statistic = fishInFile.GetStatistics();
+        fishInFile.Statistic();
+    }
+
+    void AddToMemory()
+    {
+        var statistic = fishInMemory.GetStatistics();
+        fishInMemory.Statistic();
+    }
+    Console.WriteLine($"Nazwa to: {name} Waga:{weight}Kg Czas zlowienia:{time}");
+}
+
+void FishGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("------------------------------------------");
+    Console.WriteLine($"Dodano Ocene");
+    Console.WriteLine("------------------------------------------");
 }
