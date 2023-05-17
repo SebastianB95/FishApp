@@ -40,7 +40,7 @@
 
         public abstract Statistics GetStatistics();
 
-        public void Statistic()
+        public void GetAndWriteStatistics()
         {
             var statistic = GetStatistics();
             Console.WriteLine($"Minimalna Ocena Ryby:   {statistic.Min}");

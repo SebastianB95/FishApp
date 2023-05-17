@@ -20,7 +20,7 @@ namespace FishApp
 
         Statistics GetStatistics();
 
-        public void Statistic();
+        public void GetAndWriteStatistics();
 
-    }   
+    }
 }

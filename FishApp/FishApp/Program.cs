@@ -77,13 +77,13 @@ fishInFile.GradeAdded += FishGradeAdded;
     void AddToFile()
     {
         var statistic = fishInFile.GetStatistics();
-        fishInFile.Statistic();
+        fishInFile.GetAndWriteStatistics();
     }
 
     void AddToMemory()
     {
         var statistic = fishInMemory.GetStatistics();
-        fishInMemory.Statistic();
+        fishInMemory.GetAndWriteStatistics();
     }
     Console.WriteLine($"Nazwa to: {name} Waga:{weight}Kg Czas zlowienia:{time}");
 }
