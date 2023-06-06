@@ -1,9 +1,13 @@
 ﻿
 using FishApp1.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using static FishApp1.Entities.EntityBase;
 
 namespace FishApp1.Repositories
 {
+
+    
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
 
@@ -12,11 +16,15 @@ namespace FishApp1.Repositories
 
 
 
+
         public SqlRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
+           
         }
+
+
 
         public IEnumerable<T> GetAll()
         {
@@ -24,7 +32,7 @@ namespace FishApp1.Repositories
         }
 
 
-        public T GetById(int id)
+        public T? GetById(int id)
         {
             return _dbSet.Find(id);
         }
@@ -32,6 +40,7 @@ namespace FishApp1.Repositories
         public void Add(T item)
         {
             _dbSet.Add(item);
+
         }
 
         public void Remove(T item)
@@ -42,6 +51,8 @@ namespace FishApp1.Repositories
         {
             _dbContext.SaveChanges();
         }
+
+     
 
     }
 }

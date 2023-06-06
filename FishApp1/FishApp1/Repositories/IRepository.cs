@@ -7,5 +7,7 @@ namespace FishApp1.Repositories
         where T : class, IEntity
     {
 
+        
+
     }
 }

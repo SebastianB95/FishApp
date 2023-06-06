@@ -5,9 +5,12 @@ namespace FishApp1.Entities
     {
         public string? Name { get; set; }
 
-        public string? weight { get; set; }
+        public string? Weight { get; set; }
 
-        public override string ToString() => $"ID:{Id} Name:{Name} Weight:{weight}";
+        public string? Angler { get; set; }
 
+        public override string ToString() => $"Nr:{Id} Nazwa:{Name} Waga:{Weight} Imie wedkarza: {Angler}";
+
+       
     }
 }
