@@ -3,8 +3,8 @@ using FishApp1.Data;
 using FishApp1.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using System.Xml.XPath;
 
 namespace FishApp1.Repositories
 {
@@ -14,7 +14,7 @@ namespace FishApp1.Repositories
         public event EventHandler<T>? FishAdded, FishRemoved;
         protected List<T> _fishs = new();
 
-        private const string nameAndPantJsonFile = "fishInfo";
+        private const string nameAndPantJsonFile = "jsonfishInfo";
 
 
 
@@ -28,15 +28,15 @@ namespace FishApp1.Repositories
 
         public IEnumerable<T> GetAll()
         {
-            var pilikJson = @"C:\Users\Sebastiann\Desktop\Projekty\FishApp\FishApp1\FishApp1\bin\Debug\net6.0\fishInfo";
-            var jsonContent = File.ReadAllText(pilikJson);
-            var fish = JsonConvert.DeserializeObject<Fish>(jsonContent);
 
-            
+              string fileName = "jsonfishInfo";
+              string jsonString = File.ReadAllText(fileName);
+              Fish fishs = JsonConvert.DeserializeObject<Fish>(jsonString)!;
 
-                return _fishs.ToList();
+
+            return _fishs.ToList(); 
         }
-
+         
 
         public T? GetById(int id)
         {

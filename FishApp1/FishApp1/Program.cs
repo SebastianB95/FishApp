@@ -20,18 +20,6 @@ Console.WriteLine("----------------------------------");
 var fishRepository = new FishInFile<Fish>();
 fishRepository.FishAdded += FishAddedInRepository;
 fishRepository.FishRemoved += FishRemoveInRepository;
-
-void FishRemoveInRepository(object? sender, Fish e)
-{
-    Console.WriteLine($"[{DateTime.UtcNow}----{e.Name} {e.Weight} {e.Angler} Usunieto element ");
-}
-
-void FishAddedInRepository(object? sender, Fish e)
-{
-    Console.WriteLine($"{DateTime.UtcNow}----{e.Name} {e.Weight} {e.Angler} Dodano Element ");
-}
-
-
 bool exit = false;
 
 while (!exit)
@@ -72,7 +60,6 @@ while (!exit)
     }
 
 }
-
 void RemoveInfo()
 {
 }
@@ -128,6 +115,15 @@ string? GetInfo(string info)
 
 
 
+void FishRemoveInRepository(object? sender, Fish e)
+{
+    Console.WriteLine($"[{DateTime.UtcNow}----{e.Name} {e.Weight} {e.Angler} Usunieto element ");
+}
+
+void FishAddedInRepository(object? sender, Fish e)
+{
+    Console.WriteLine($"{DateTime.UtcNow}----{e.Name} {e.Weight} {e.Angler} Dodano Element ");
+}
 
 
 
