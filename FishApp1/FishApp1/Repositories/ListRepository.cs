@@ -8,6 +8,9 @@ namespace FishApp1.Repositories
 
         protected readonly List<T> _items = new();
 
+        public event EventHandler<T>? FishAdded;
+        public event EventHandler<T>? FishRemoved;
+
         public IEnumerable<T> GetAll()
         {
             return _items.ToList();

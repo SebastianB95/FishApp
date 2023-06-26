@@ -14,8 +14,8 @@ namespace FishApp1.Repositories
         private readonly DbSet<T> _dbSet;
         private readonly DbContext _dbContext;
 
-
-
+        public event EventHandler<T>? FishAdded;
+        public event EventHandler<T>? FishRemoved;
 
         public SqlRepository(DbContext dbContext)
         {

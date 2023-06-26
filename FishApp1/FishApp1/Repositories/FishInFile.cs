@@ -5,38 +5,70 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using Newtonsoft.Json;
 using System.Xml.XPath;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using System.IO;
+using System;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+using Newtonsoft.Json.Linq;
 
 namespace FishApp1.Repositories
 {
     public class FishInFile<T> : IRepository<T> where T : class, IEntity, new()
     {
 
-        public event EventHandler<T>? FishAdded, FishRemoved;
+        public event EventHandler<T>? FishAdded;
         protected List<T> _fishs = new();
+        public event EventHandler<T>? FishRemoved;
 
-        private const string nameAndPantJsonFile = "jsonfishInfo";
+        private int lastFish = 1;
+
+        private const string nameAndPantJsonFile = "fishs.json";
 
 
 
         public void Add(T item)
         {
-            item.Id = _fishs.Count + 1;
+
+            if (_fishs.Count == 0)
+            {
+                item.Id = lastFish;
+                lastFish++;
+
+            }
+            else if (_fishs.Count > 0)
+            {
+                lastFish = _fishs[_fishs.Count - 1].Id;
+                item.Id = ++lastFish;
+
+
+            }
+
             _fishs.Add(item);
             FishAdded?.Invoke(this, item);
+
+
 
         }
 
         public IEnumerable<T> GetAll()
         {
-
-              string fileName = "jsonfishInfo";
-              string jsonString = File.ReadAllText(fileName);
-              Fish fishs = JsonConvert.DeserializeObject<Fish>(jsonString)!;
+            string JsonString = File.ReadAllText(nameAndPantJsonFile);
+            List<T> fishs = JsonConvert.DeserializeObject<List<T>>(JsonString);
 
 
-            return _fishs.ToList(); 
+            foreach (var fish in fishs)
+            {
+                _fishs.Add(fish);  
+            }
+
+            return _fishs.ToList();
+
         }
-         
+
 
         public T? GetById(int id)
         {
@@ -45,6 +77,9 @@ namespace FishApp1.Repositories
 
         public void Remove(T item)
         {
+           
+
+
             _fishs.Remove(item);
             FishRemoved?.Invoke(this, item);
 
@@ -52,7 +87,7 @@ namespace FishApp1.Repositories
 
         public void Save()
         {
-
+            File.Delete(nameAndPantJsonFile);
             string fishSerialized = JsonConvert.SerializeObject(_fishs);
             var fileJson = File.AppendText(nameAndPantJsonFile);
 
@@ -63,7 +98,6 @@ namespace FishApp1.Repositories
             }
 
         }
-
     }
-    
 }
+
