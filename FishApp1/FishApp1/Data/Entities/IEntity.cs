@@ -1,5 +1,4 @@
-﻿
-namespace FishApp1.Entities
+﻿namespace FishApp1.Data.Entities
 {
     public interface IEntity
     {

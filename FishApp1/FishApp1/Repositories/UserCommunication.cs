@@ -1,4 +1,4 @@
-﻿using FishApp1.Entities;
+﻿using FishApp1.Data.Entities;
 using Newtonsoft.Json;
 
 namespace FishApp1.Repositories;
@@ -60,7 +60,10 @@ public class UserCommunication : IUserCommunication
         Console.WriteLine("|________________________________________|");
         Console.WriteLine("|  Wybierze 8 aby pokazac najwyzsza wage |");
         Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|    Wybierz 9 aby zamknać aplikacje     |");
+        Console.WriteLine("|    Wybierz 9 aby zobaczyć statystyki   |");
+        Console.WriteLine("|         polowow ryb morskich           |");
+        Console.WriteLine("|________________________________________|");
+        Console.WriteLine("|   Wybierze 10 aby zakonczyć program    |");
         Console.WriteLine("|________________________________________|");
 
         return string.Empty;
@@ -109,7 +112,7 @@ public class UserCommunication : IUserCommunication
         }
     }
 
-    public void RemoveData()
+    public void RemoveFish()
     {
         Console.Write("Prosze Podać Id elementu ktory chcesz usunac:");
         var removed = Console.ReadLine();

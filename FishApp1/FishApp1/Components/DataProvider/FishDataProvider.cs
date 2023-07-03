@@ -1,8 +1,8 @@
-﻿using FishApp1.Entities;
+﻿using FishApp1.Data.Entities;
 using FishApp1.Repositories;
 using Newtonsoft.Json;
 
-namespace FishApp1.Data;
+namespace FishApp1.Components.DataProvider;
 
 public class FishDataProvider : IFishDataProvider
 {
@@ -26,7 +26,7 @@ public class FishDataProvider : IFishDataProvider
         var fish = _fishrepository.GetAll();
         var anglers = fish.Select(x => x.Angler).Distinct().ToList();
 
-        return anglers; 
+        return anglers;
     }
 
     public List<string> GetUniqueFish()
@@ -34,7 +34,7 @@ public class FishDataProvider : IFishDataProvider
         var fish = _fishrepository.GetAll();
         var fishs = fish.Select(x => x.Name).Distinct().ToList();
 
-        return fishs; 
+        return fishs;
     }
 
     public int? FilterMaxWeight()
@@ -44,5 +44,5 @@ public class FishDataProvider : IFishDataProvider
         return fish.Select(x => x.Weight).Max();
     }
 
-    
+
 }

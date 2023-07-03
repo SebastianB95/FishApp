@@ -1,5 +1,5 @@
 ﻿
-using FishApp1.Entities;
+using FishApp1.Data.Entities;
 
 namespace FishApp1.Repositories
 {

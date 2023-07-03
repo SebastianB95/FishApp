@@ -1,6 +1,5 @@
-﻿using FishApp1.Entities;
-
-namespace FishApp1.Data;
+﻿
+namespace FishApp1.Components.DataProvider;
 
 public interface IFishDataProvider
 {
@@ -11,8 +10,4 @@ public interface IFishDataProvider
     List<string> GetUniqueAngler();
 
     int? FilterMaxWeight();
-
-
-
-
 }

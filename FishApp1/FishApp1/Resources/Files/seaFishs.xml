@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SeaFishs>
+  <Fishing Year="2010" TankType="Ryby morskie" Species="dorszowate  " Field="16.5" />
+  <Fishing Year="2010" TankType="Ryby morskie" Species="śledzie  " Field="24.7" />
+  <Fishing Year="2010" TankType="Ryby morskie" Species="szproty  " Field="58.8" />
+  <Fishing Year="2010" TankType="Ryby morskie" Species="inne morskie" Field="70.7" />
+  <Fishing Year="2010" TankType="Ryby słodkowodne" Species="słodkowodne" Field="45.1" />
+  <Fishing Year="2011" TankType="Ryby morskie" Species="dorszowate  " Field="16.9" />
+  <Fishing Year="2011" TankType="Ryby morskie" Species="śledzie  " Field="29.9" />
+  <Fishing Year="2011" TankType="Ryby morskie" Species="szproty  " Field="56.5" />
+  <Fishing Year="2011" TankType="Ryby morskie" Species="inne morskie" Field="76.6" />
+  <Fishing Year="2011" TankType="Ryby słodkowodne" Species="słodkowodne" Field="48.3" />
+  <Fishing Year="2012" TankType="Ryby morskie" Species="dorszowate  " Field="19.3" />
+  <Fishing Year="2012" TankType="Ryby morskie" Species="śledzie  " Field="27.1" />
+  <Fishing Year="2012" TankType="Ryby morskie" Species="szproty  " Field="63.1" />
+  <Fishing Year="2012" TankType="Ryby morskie" Species="inne morskie" Field="70.1" />
+  <Fishing Year="2012" TankType="Ryby słodkowodne" Species="słodkowodne" Field="50.4" />
+  <Fishing Year="2013" TankType="Ryby morskie" Species="dorszowate  " Field="19.6" />
+  <Fishing Year="2013" TankType="Ryby morskie" Species="śledzie  " Field="23.6" />
+  <Fishing Year="2013" TankType="Ryby morskie" Species="szproty  " Field="81" />
+  <Fishing Year="2013" TankType="Ryby morskie" Species="inne morskie" Field="71.3" />
+  <Fishing Year="2013" TankType="Ryby słodkowodne" Species="słodkowodne" Field="49.8" />
+  <Fishing Year="2014" TankType="Ryby morskie" Species="dorszowate  " Field="19.4" />
+  <Fishing Year="2014" TankType="Ryby morskie" Species="śledzie  " Field="28.1" />
+  <Fishing Year="2014" TankType="Ryby morskie" Species="szproty  " Field="58.6" />
+  <Fishing Year="2014" TankType="Ryby morskie" Species="inne morskie" Field="64.3" />
+  <Fishing Year="2014" TankType="Ryby słodkowodne" Species="słodkowodne" Field="54.8" />
+  <Fishing Year="2015" TankType="Ryby morskie" Species="dorszowate  " Field="20.1" />
+  <Fishing Year="2015" TankType="Ryby morskie" Species="śledzie  " Field="39.7" />
+  <Fishing Year="2015" TankType="Ryby morskie" Species="szproty  " Field="64.2" />
+  <Fishing Year="2015" TankType="Ryby morskie" Species="inne morskie" Field="59.8" />
+  <Fishing Year="2015" TankType="Ryby słodkowodne" Species="słodkowodne" Field="50.4" />
+  <Fishing Year="2016" TankType="Ryby morskie" Species="dorszowate  " Field="17.9" />
+  <Fishing Year="2016" TankType="Ryby morskie" Species="śledzie  " Field="44.1" />
+  <Fishing Year="2016" TankType="Ryby morskie" Species="szproty  " Field="60.1" />
+  <Fishing Year="2016" TankType="Ryby morskie" Species="inne morskie" Field="75" />
+  <Fishing Year="2016" TankType="Ryby słodkowodne" Species="słodkowodne" Field="52.3" />
+  <Fishing Year="2017" TankType="Ryby morskie" Species="dorszowate  " Field="27.6" />
+  <Fishing Year="2017" TankType="Ryby morskie" Species="śledzie  " Field="43.7" />
+  <Fishing Year="2017" TankType="Ryby morskie" Species="szproty  " Field="70" />
+  <Fishing Year="2017" TankType="Ryby morskie" Species="inne morskie" Field="68.7" />
+  <Fishing Year="2017" TankType="Ryby słodkowodne" Species="słodkowodne" Field="53.3" />
+  <Fishing Year="2018" TankType="Ryby morskie" Species="dorszowate  " Field="15.8" />
+  <Fishing Year="2018" TankType="Ryby morskie" Species="śledzie  " Field="52.3" />
+  <Fishing Year="2018" TankType="Ryby morskie" Species="szproty  " Field="74.2" />
+  <Fishing Year="2018" TankType="Ryby morskie" Species="inne morskie" Field="54.9" />
+  <Fishing Year="2018" TankType="Ryby słodkowodne" Species="słodkowodne" Field="58.5" />
+  <Fishing Year="2019" TankType="Ryby morskie" Species="dorszowate  " Field="42.4" />
+  <Fishing Year="2019" TankType="Ryby morskie" Species="śledzie  " Field="42" />
+  <Fishing Year="2019" TankType="Ryby morskie" Species="szproty  " Field="74.5" />
+  <Fishing Year="2019" TankType="Ryby morskie" Species="inne morskie" Field="44.3" />
+  <Fishing Year="2019" TankType="Ryby słodkowodne" Species="słodkowodne" Field="59.8" />
+  <Fishing Year="2020" TankType="Ryby morskie" Species="dorszowate  " Field="49.3" />
+  <Fishing Year="2020" TankType="Ryby morskie" Species="śledzie  " Field="38.9" />
+  <Fishing Year="2020" TankType="Ryby morskie" Species="szproty  " Field="60.6" />
+  <Fishing Year="2020" TankType="Ryby morskie" Species="inne morskie" Field="43.1" />
+  <Fishing Year="2020" TankType="Ryby słodkowodne" Species="słodkowodne" Field="59.4" />
+  <Fishing Year="2021" TankType="Ryby morskie" Species="dorszowate  " Field="29.1" />
+  <Fishing Year="2021" TankType="Ryby morskie" Species="śledzie  " Field="28.6" />
+  <Fishing Year="2021" TankType="Ryby morskie" Species="szproty  " Field="66.6" />
+  <Fishing Year="2021" TankType="Ryby morskie" Species="inne morskie" Field="61.6" />
+  <Fishing Year="2021" TankType="Ryby słodkowodne" Species="słodkowodne" Field="56.8" />
+</SeaFishs>

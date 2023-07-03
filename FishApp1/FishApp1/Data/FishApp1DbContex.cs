@@ -1,5 +1,4 @@
-﻿
-using FishApp1.Entities;
+﻿using FishApp1.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FishApp1.Data

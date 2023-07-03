@@ -2,41 +2,14 @@
 
 public interface IUserCommunication
 {
-
-
     string  Menu();
 
     void AddFishs();
 
-
-    void RemoveData();
+    void RemoveFish();
 
     void WriteAllToConsole();
 
     void Saveinfo();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

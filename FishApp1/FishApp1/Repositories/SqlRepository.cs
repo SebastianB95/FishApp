@@ -1,13 +1,12 @@
-﻿
-using FishApp1.Entities;
+﻿using FishApp1.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using static FishApp1.Entities.EntityBase;
+using static FishApp1.Data.Entities.EntityBase;
 
 namespace FishApp1.Repositories
 {
 
-    
+
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
 
