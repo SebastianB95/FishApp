@@ -4,12 +4,19 @@ public interface IUserCommunication
 {
     string  Menu();
 
-    void AddFishs();
+    void AddDate();
 
-    void RemoveFish();
+    void RemoveDate();
 
     void WriteAllToConsole();
 
-    void Saveinfo();
+    void UpdateDate();
+
+    void StatisticSeaFishs();
+
+    void GroupFish();
+    
+  
+   
 
 }

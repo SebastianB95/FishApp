@@ -1,19 +1,19 @@
-﻿using FishApp1.Data.Entities;
+﻿using FishApp1.Components.CsvReader.Models;
+using FishApp1.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FishApp1.Data
+namespace FishApp1.Data;
+
+public class FishApp1DbContex : DbContext
 {
-    public class FishApp1DbContex : DbContext
+
+    public FishApp1DbContex(DbContextOptions<FishApp1DbContex> options) 
+        : base(options)
     {
-        public DbSet<Fish> fishs => Set<Fish>();
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseInMemoryDatabase("StorageAppDb");
-        }
 
     }
+
+    public DbSet<SeaFishs> SeaFishs { get; set; }
+    public Action<object?, SeaFishs> FishAdded { get; internal set; }
+    public Action<object?, SeaFishs> FishRemoved { get; internal set; }
 }

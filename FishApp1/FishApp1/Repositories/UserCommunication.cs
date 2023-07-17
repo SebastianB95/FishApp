@@ -1,39 +1,53 @@
-﻿using FishApp1.Data.Entities;
+﻿using FishApp1.Components.CsvReader.Models;
+using FishApp1.Data;
+using FishApp1.Data.Entities;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
+using System;
+using FishApp1.Components.CsvReader;
+using System.Xml.Linq;
 
 namespace FishApp1.Repositories;
 
 public class UserCommunication : IUserCommunication
 {
-    private readonly IRepository<Fish> _repository;
-    
+    private readonly IRepository<SeaFishs> _repository;
+    private readonly FishApp1DbContex _fishAppDbContext;
+    public event Action<SeaFishs>? FishAdded;
+    public event Action<SeaFishs>? FishRemoved;
+    private readonly ICvReader _cvReader;
+
+
+
     const string filename = "audity.txt";
     private const string nameAndPantJsonFile = "fishs.json";
-    public UserCommunication(IRepository<Fish> repository)
+    public UserCommunication(IRepository<SeaFishs> repository, FishApp1DbContex fishApp1Db, ICvReader cvReader)
     {
         _repository = repository;
         _repository.FishAdded += FishA;
         _repository.FishRemoved += FishR;
-        
+        _cvReader = cvReader;
+        _fishAppDbContext = fishApp1Db;
+        _fishAppDbContext.Database.EnsureCreated();
     }
 
-    private void FishR(object? sender, Fish e)
+    private void FishR(object? sender, SeaFishs e)
     {
-        Console.WriteLine($"[{DateTime.UtcNow}----{e.Id} {e.Name} {e.Weight} {e.species} {e.Angler}----Usunieto element ");
+        Console.WriteLine($"[{DateTime.UtcNow}----{e.Id} {e.Year} {e.TankType} {e.Species} {e.Field}----usunieto element ");
 
         using (var writer = File.AppendText(filename))
 
         {
-            writer.WriteLine($"[{DateTime.UtcNow}----{e.Id} {e.Name} {e.Weight} {e.species} {e.Angler}----Usunieto element ");
+            writer.WriteLine($"[{DateTime.UtcNow}----{e.Id} {e.Year} {e.TankType} {e.Species} {e.Field}----usunieto element ");
         }
     }
 
-    private void FishA(object? sender, Fish e)
+    private void FishA(object? sender, SeaFishs e)
     {
-        Console.WriteLine($"{DateTime.UtcNow}----{e.Id} {e.Name} {e.Weight} {e.species} {e.Angler}----Dodano Element ");
+        Console.WriteLine($"{DateTime.UtcNow}----{e.Id} {e.Year} {e.TankType} {e.Species} {e.Field}----Dodano Element ");
         using (var writer = File.AppendText(filename))
         {
-            writer.WriteLine($"[{DateTime.UtcNow}----{e.Id}  {e.Name} {e.Weight} {e.species} {e.Angler}----Dodano Element ");
+            writer.WriteLine($"[{DateTime.UtcNow}----{e.Id}  {e.Year} {e.TankType} {e.Species} {e.Field}----Dodano Element ");
 
         }
     }
@@ -44,140 +58,240 @@ public class UserCommunication : IUserCommunication
         Console.WriteLine("|-----Witam w aplikacji dla wedkarzy-----|");
         Console.WriteLine("|----------------------------------------|");
         Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|     Wybierz 1 aby dodac informaacje    |");
+        Console.WriteLine("|      Wybierz 1 dodac pozycje           |");
         Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|     Wybierz 2 aby usunac pozycje       |");
+        Console.WriteLine("|      Wybierz 2  usunac pozycje         |");
         Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|     Wybierz 3 aby Wyswietlic Dane      |");
+        Console.WriteLine("|      Wybierz 3  Wyswietlic Dane        |");
         Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|     Wybierz 4 aby zapisac dane         |");
+        Console.WriteLine("|      Wybierz 4 Edytowac                |");
         Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|  Wybierz 5 aby pokazac unikalne imiona |");
+        Console.WriteLine("|      Wybierz 5 Statystyki polowow      |");
         Console.WriteLine("|----------------------------------------|");
-        Console.WriteLine("|  Wybierz 6 aby pokazac unikalne ryby   |");
+        Console.WriteLine("|      Wybierz 6 dane z kazdego roku     |");
         Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|  Wybierz 7 aby pokazac najnizsza wage  |");
-        Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|  Wybierze 8 aby pokazac najwyzsza wage |");
-        Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|    Wybierz 9 aby zobaczyć statystyki   |");
-        Console.WriteLine("|         polowow ryb morskich           |");
-        Console.WriteLine("|________________________________________|");
-        Console.WriteLine("|   Wybierze 10 aby zakonczyć program    |");
+        Console.WriteLine("|    Wybierze X aby zakonczyć program    |");
         Console.WriteLine("|________________________________________|");
 
         return string.Empty;
     }
 
-
-
-    public void AddFishs()
+    public void AddDate()
     {
-        string fishName = GetInfo("Podaj Nazwe ryby").ToUpper();
-        int? fishWeight = GetInfoo("Podaj Wage Ryby");
-        string speciess = GetInfo("Podaj Gatunek Ryby").ToUpper();
-        string anglerName = GetInfo("Podaj Imie wedkarza").ToUpper();
+        Console.WriteLine("Podaj Rok:");
+        var year = int.Parse(Console.ReadLine());
+        Console.WriteLine("Podaj Typ Zbiornika:");
+        var tanktype = Console.ReadLine();
+        Console.WriteLine("Podaj Gatunek Ryb:");
+        var speciess = Console.ReadLine();
+        Console.WriteLine("Podaj Liczbe polowow");
+        var field = double.Parse(Console.ReadLine());
 
-
-        if (!string.IsNullOrEmpty(fishName) && !string.IsNullOrEmpty(speciess) && !string.IsNullOrEmpty(anglerName))
+        _fishAppDbContext.Add(new SeaFishs
         {
-            var fishs = new Fish
-            {
+            Year = year,
+            TankType = tanktype,
+            Species = speciess,
+            Field = field,
+        });
+        _fishAppDbContext.SaveChanges();
+    }
 
-                Name = fishName,
-                Weight = fishWeight,
-                species = speciess,
-                Angler = anglerName
+    public void RemoveDate()
+    {
+        var fishFromDb = _fishAppDbContext.SeaFishs.ToList();
 
-            };
-            _repository.Add(fishs);
-
+        foreach (var fish in fishFromDb)
+        {
+            Console.WriteLine($"ID:{fish.Id} Rok: {fish.Year} Zbiornik: {fish.TankType} Gatunek:{fish.Species} Polowy: {fish.Field}");
         }
-        string? GetInfo(string info)
+        Console.WriteLine("Podaj ID Elementu ktory chcesz usunac");
+
+        var delete = int.Parse(Console.ReadLine());
+        var years = this.ReadID(delete);
+
+        _fishAppDbContext.Remove(years);
+        _fishAppDbContext.SaveChanges();
+    }
+
+    private SeaFishs? ReadID(int ID)
+    {
         {
-            Console.WriteLine(info);
-            string fishInfo = Console.ReadLine();
-
-
-            return fishInfo;
+            return _fishAppDbContext.SeaFishs.FirstOrDefault(x => x.Id == ID);
         }
+    }
 
-        int? GetInfoo(string infoo)
+    public void UpdateDate()
+    {
+        Console.WriteLine("Jezeli chcesz edytowac rok wybierz y");
+        Console.WriteLine("Jezeli chcesz edytowac typ zbiornika wybierz t");
+        Console.WriteLine("Jezeli chcesz edytowac gatunek  wybierz s");
+        Console.WriteLine("Jezeli chcesz edytowac polowy wybierz f");
+
+
+
+        var input = Console.ReadLine();
+
+        switch (input)
         {
-            Console.WriteLine(infoo);
-            int fishInfoo = int.Parse(Console.ReadLine());
 
-            return fishInfoo;
+            case "y":
+
+                Console.WriteLine("Podaj rok ktory chcesz zmienic");
+                var years = int.Parse(Console.ReadLine());
+                var year = this.ReadYear(years);
+                Console.WriteLine("Podaj Nowy rok");
+                var y = int.Parse(Console.ReadLine());
+                year.Year = y;
+                _fishAppDbContext.SaveChanges();
+                Console.WriteLine("Zmienione Pomyslnie");
+                break;
+
+            case "t":
+
+                Console.WriteLine("Podaj typ zbiornik ktory chcesz zmienic");
+                var tanks = Console.ReadLine();
+                var tank = this.ReadTankType(tanks);
+                Console.WriteLine("Podaj nowy typ zbiornika");
+                var t = Console.ReadLine();
+                tank.TankType = t;
+                _fishAppDbContext.SaveChanges();
+                Console.WriteLine("Zmienione Pomyslnie");
+                break;
+
+            case "s":
+                Console.WriteLine("Podaj gatunek ktory chcesz zmienic");
+                var speciess = Console.ReadLine();
+                var species = this.ReadSpecies(speciess);
+                Console.WriteLine("Podaj nowy gatunek");
+                var s = Console.ReadLine();
+                species.TankType = s;
+                _fishAppDbContext.SaveChanges();
+                Console.WriteLine("Zmienione Pomyslnie");
+                break;
+
+
+            case "f":
+                Console.WriteLine("Podaj liczbe polowow ktore chcesz zmienic");
+                var fields = double.Parse(Console.ReadLine());
+                var field = this.ReadField(fields);
+                Console.WriteLine("Podaj nowa liczbe polowow");
+                var f = double.Parse(Console.ReadLine());
+                field.Field = f;
+                _fishAppDbContext.SaveChanges();
+                Console.WriteLine("Zmienione Pomyslnie");
+                break;
 
         }
     }
 
-    public void RemoveFish()
+    private SeaFishs? ReadYear(int year)
     {
-        Console.Write("Prosze Podać Id elementu ktory chcesz usunac:");
-        var removed = Console.ReadLine();
-        if (int.TryParse(removed, out var result))
+
+        return _fishAppDbContext.SeaFishs.FirstOrDefault(x => x.Year == year);
+
+    }
+    private SeaFishs? ReadTankType(string tanktype)
+    {
+        return _fishAppDbContext.SeaFishs.FirstOrDefault(x => x.TankType == tanktype);
+    }
+    private SeaFishs? ReadSpecies(string species)
+    {
+        return _fishAppDbContext.SeaFishs.FirstOrDefault(x => x.Species == species);
+    }
+
+    private SeaFishs? ReadField(double field)
+    {
+        return _fishAppDbContext.SeaFishs.FirstOrDefault(x => x.Field == field);
+    }
+
+    public void WriteAllToConsole()
+    {
+        var fishFromDb = _fishAppDbContext.SeaFishs.ToList();
+
+        foreach (var fish in fishFromDb)
         {
-            var itemToRemove = _repository.GetById(result);
-            if (itemToRemove != null)
+
+            Console.WriteLine($"Rok: {fish.Year} Zbiornik: {fish.TankType} Gatunek:{fish.Species} Polowy: {fish.Field}");
+
+        }
+    }
+
+
+    public void StatisticSeaFishs()
+    {
+        var groups = _fishAppDbContext
+        .SeaFishs
+        .GroupBy(x => x.TankType)
+        .Select(g => new
+        {
+            Name = g.Key,
+            Max = g.Max(f => f.Field),
+            Min = g.Min(f => f.Field),
+            Average = g.Average(f => f.Field)
+
+        })
+      .OrderBy(x => x.Average);
+
+        foreach (var group in groups)
+        {
+            Console.WriteLine($"{group.Name}");
+            Console.WriteLine($"\t Srednia polowow: {group.Average:N1}");
+            Console.WriteLine($"\t Maksymalny polow: {group.Max}");
+            Console.WriteLine($"\t Minimalny polow: {group.Min}");
+        }
+
+
+    }
+
+
+
+    public void GroupFish()
+    {
+        var groups = _fishAppDbContext
+            .SeaFishs
+            .GroupBy(x => x.Year)
+            .Select(x => new
+            { Name =x.Key,
+            Fishs = x.ToList()
+
+
+            }).ToList();
+
+
+        foreach (var group in groups)
+        {
+            Console.WriteLine(group.Name);
+            Console.WriteLine("------------");
+            foreach(var fish in group.Fishs)
             {
-                _repository.Remove(itemToRemove);
+                Console.WriteLine($"\t Typ Zbiornika:{fish.TankType}  Gatunek:{fish.Species}  Liczba Polowow:{fish.Field}");
+
+                Console.WriteLine();
+                    
             }
-            else
-            {
-                Console.WriteLine("Nie odnaleziono elementu");
-            }
-        }
-
-    }
-
-    public void Saveinfo()
-    {
-
-        while (true)
-        {
-            var input = GetInfo("Aby Zapisac Dane Wcisnij  1 ");
-            if (input == "1")
-            {
-                _repository.Save();
-                Console.WriteLine("Dane Zapisane");
-
-                return; 
-            }
-        }
-
-        string? GetInfo(string info)
-        {
-            Console.WriteLine(info);
-            string fishInfo = Console.ReadLine();
 
 
-            return fishInfo;
-        }
-
-
-    }
-
-            public void WriteAllToConsole()
-    {
-        var jsonDeseralized = File.ReadAllText(nameAndPantJsonFile);
-        List<Fish> fishs = JsonConvert.DeserializeObject<List<Fish>>(jsonDeseralized);
-
-
-        foreach (Fish fish in fishs)
-        {
-
-            Console.WriteLine("NR:" + fish.Id + "Nazwa Ryby: " + fish.Name + " Gatunek:" + fish.species + ", Waga: " + fish.Weight + " KG" + ",Wedkarz:" + fish.Angler);
-            Console.WriteLine("----------------------------------------------------------------------------|");
 
         }
+
+
+
     }
 
 
 
 
-
-    
 
 }
+
+
+
+
+
+
+
+
+
+
 
