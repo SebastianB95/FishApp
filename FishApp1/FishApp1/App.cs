@@ -56,7 +56,6 @@ public class App : IApp
                     break;
                 case "5":
                     _userCommunication.StatisticSeaFishs();
-                    
                     break;
                 case "6":
                     _userCommunication.GroupFish();
