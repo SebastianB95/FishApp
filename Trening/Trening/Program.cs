@@ -10,8 +10,6 @@ while (true)
     int shot = int.Parse(Console.ReadLine());
     count++; 
     
-    
-
     if (shot == i)
     {
         Console.WriteLine("Udalo sie");
