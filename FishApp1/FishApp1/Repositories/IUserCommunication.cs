@@ -2,21 +2,17 @@
 
 public interface IUserCommunication
 {
-    string  Menu();
+    string Interface();
 
-    void AddDate();
+    void AddingItems();
 
-    void RemoveDate();
+    void DeletingItems();
 
     void WriteAllToConsole();
 
-    void UpdateDate();
+    void EditingItems();
 
     void StatisticSeaFishs();
 
     void GroupFish();
-    
-  
-   
-
 }

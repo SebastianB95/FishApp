@@ -5,7 +5,7 @@ namespace FishApp1.Components.CsvReader;
 public interface ICvReader
 {
 
-    List<Fishs> ProcessFish(string filePath);
+    List<SeaFishs> ProcessFish(string filePath);
 
 
 }

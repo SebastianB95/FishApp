@@ -10,13 +10,13 @@ namespace FishApp1.Components.CsvReader;
 
 public class CvReader : ICvReader
 {
-    public List<Fishs> ProcessFish(string filePath)
+    public List<SeaFishs> ProcessFish(string filePath)
     {
 
 
         if (!File.Exists(filePath))
         {
-            return new List<Fishs>();
+            return new List<SeaFishs>();
         }
 
 

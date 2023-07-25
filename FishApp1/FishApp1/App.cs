@@ -1,15 +1,8 @@
 ﻿using FishApp1.Components.CsvReader;
 using FishApp1.Components.CsvReader.Models;
 using FishApp1.Data;
-using FishApp1.Data.Entities;
 using FishApp1.Repositories;
-using Newtonsoft.Json;
-using System.Collections.Immutable;
-using System.IO.Enumeration;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
 using System.Xml.Linq;
-
 namespace FishApp1;
 
 public class App : IApp
@@ -31,8 +24,7 @@ public class App : IApp
 
     public void Run()
     {
-
-        Console.Write(_userCommunication.Menu());
+        Console.Write(_userCommunication.Interface());
         while (true)
         {
             var input = Console.ReadLine();
@@ -43,16 +35,16 @@ public class App : IApp
             switch (input)
             {
                 case "1":
-                    _userCommunication.AddDate();
+                    _userCommunication.AddingItems();
                     break;
                 case "2":
-                    _userCommunication.RemoveDate();
+                    _userCommunication.DeletingItems();
                     break;
                 case "3":
                     _userCommunication.WriteAllToConsole();
                     break;
                 case "4":
-                    _userCommunication.UpdateDate();
+                    _userCommunication.EditingItems();
                     break;
                 case "5":
                     _userCommunication.StatisticSeaFishs();
@@ -60,11 +52,6 @@ public class App : IApp
                 case "6":
                     _userCommunication.GroupFish();
                     break;
-                case "7":
-                    
-                    break;
-              
-                    
                 case "a":
                 case "A":
                     XmlFile();
@@ -76,19 +63,13 @@ public class App : IApp
                 case "c":
                 case "C":
                     InsertDate();
-                    break;
-                
-       
+                    break;       
                 default:
-                    Console.WriteLine("Prosze wybrac: 1,2,4,5,6,7,8,9 lub X aby zamknac program");
+                    Console.WriteLine("Prosze wybrac: 1,2,4,5,6 lub X aby zamknac program");
                     continue;
             }
         }
     }
-
-   
-
- 
 
     void XmlFile()
     {
@@ -145,13 +126,5 @@ public class App : IApp
         _fishAppDbContext.SaveChanges();
 
     }
-
-
-
-
-
-
-
-
    
 }

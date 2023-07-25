@@ -7,7 +7,7 @@ namespace FishApp1.Repositories.Extensions;
 public static class FIshExtension
 {
 
-    public static IEnumerable<Fishs> ToFish(this IEnumerable<string> source)
+    public static IEnumerable<SeaFishs> ToFish(this IEnumerable<string> source)
     {
 
         foreach (var line in source)
@@ -15,7 +15,7 @@ public static class FIshExtension
             var columns = line.Split(';');
 
 
-            yield return new Fishs
+            yield return new SeaFishs
             {
                 Year = int.Parse(columns[0]),
 
