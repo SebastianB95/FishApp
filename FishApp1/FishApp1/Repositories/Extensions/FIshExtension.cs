@@ -1,6 +1,4 @@
-﻿
-using FishApp1.Components.CsvReader.Models;
-using System.Data.Common;
+﻿using FishApp1.Components.CsvReader.Models;
 
 namespace FishApp1.Repositories.Extensions;
 
@@ -24,18 +22,7 @@ public static class FIshExtension
                 Species = columns[2],
 
                 Field = double.Parse(columns[3]),
-
-                
             };
         }
     }
 }
-
-
-
-
-
-
-
-
-

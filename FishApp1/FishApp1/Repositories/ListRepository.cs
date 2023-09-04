@@ -1,6 +1,5 @@
 ﻿
 using FishApp1.Data.Entities;
-
 namespace FishApp1.Repositories
 {
     public class ListRepository<T> : IRepository<T> where T : class, IEntity, new()
@@ -18,9 +17,10 @@ namespace FishApp1.Repositories
 
         public void Add(T item)
         {
-
+            FishAdded?.Invoke(this, item);
             item.Id = _items.Count + 1;
             _items.Add(item);
+           
 
         }
         public void Save()
@@ -30,7 +30,9 @@ namespace FishApp1.Repositories
         }
         public void Remove(T item)
         {
+            FishRemoved?.Invoke(this, item);
             _items.Remove(item);
+           
         }
 
         public T GetById(int id)

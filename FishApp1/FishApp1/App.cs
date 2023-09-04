@@ -87,9 +87,7 @@ public class App : IApp
 
         document.Add(fishs);
         document.Save("seaFishs.xml");
-
     }
-
     void LoadXml()
     {
         var document = XDocument.Load("seaFishs.xml");
@@ -109,7 +107,6 @@ public class App : IApp
     {
         var fishs = _cvReader.ProcessFish("C:\\Users\\Sebastiann\\Desktop\\Projekty\\FishApp\\FishApp1\\FishApp1\\Resources\\Files\\ryby.csv");
 
-
         foreach (var fish in fishs)
         {
 
@@ -124,7 +121,5 @@ public class App : IApp
 
         }
         _fishAppDbContext.SaveChanges();
-
     }
-   
 }

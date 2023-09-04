@@ -11,6 +11,5 @@
         public string? species { get; set; }
 
         public override string ToString() => $"Nr:{Id} Nazwa:{Name} Waga:{Weight}KG Gatunek :{species} Imie wedkarza: {Angler}";
-
     }
 }

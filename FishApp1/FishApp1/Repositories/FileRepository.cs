@@ -1,18 +1,4 @@
-﻿
-using FishApp1.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
-using Newtonsoft.Json;
-using System.Xml.XPath;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System.IO;
-using System;
-using JsonSerializer = System.Text.Json.JsonSerializer;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using FishApp1.Data.Entities;
 
 namespace FishApp1.Repositories
@@ -28,8 +14,6 @@ namespace FishApp1.Repositories
 
         private const string nameAndPantJsonFile = "fishs.json";
 
-
-
         public void Add(T item)
         {
 
@@ -43,15 +27,10 @@ namespace FishApp1.Repositories
             {
                 lastFish = _fishs[_fishs.Count - 1].Id;
                 item.Id = ++lastFish;
-
-
             }
 
             _fishs.Add(item);
             FishAdded?.Invoke(this, item);
-
-
-
         }
 
         public IEnumerable<T> GetAll()
@@ -69,7 +48,6 @@ namespace FishApp1.Repositories
 
         }
 
-
         public T? GetById(int id)
         {
             return _fishs.Single(item => item.Id == id);
@@ -77,12 +55,8 @@ namespace FishApp1.Repositories
 
         public void Remove(T item)
         {
-           
-
-
             _fishs.Remove(item);
             FishRemoved?.Invoke(this, item);
-
         }
 
         public void Save()
@@ -100,4 +74,3 @@ namespace FishApp1.Repositories
         }
     }
 }
-

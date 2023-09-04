@@ -1,13 +1,9 @@
 ﻿using FishApp1.Components.CsvReader.Models;
 using FishApp1.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using static FishApp1.Data.Entities.EntityBase;
 
 namespace FishApp1.Repositories
 {
-
-
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
 
@@ -26,13 +22,10 @@ namespace FishApp1.Repositories
            
         }
 
-
-
         public IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }
-
 
         public T? GetById(int id)
         {
@@ -45,7 +38,6 @@ namespace FishApp1.Repositories
             FishAdded?.Invoke(this, item);
 
         }
-
         public void Remove(T item)
         {
             _dbSet.Remove(item);
@@ -55,9 +47,5 @@ namespace FishApp1.Repositories
         {
             _dbContext.SaveChanges();
         }
-
-     
-
     }
 }
-

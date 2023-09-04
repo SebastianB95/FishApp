@@ -1,5 +1,4 @@
-﻿
-using FishApp1.Data.Entities;
+﻿using FishApp1.Data.Entities;
 
 namespace FishApp1.Repositories
 {
@@ -8,6 +7,5 @@ namespace FishApp1.Repositories
     {
         event EventHandler<T>? FishAdded;
         event EventHandler<T>? FishRemoved;
-
     }
 }

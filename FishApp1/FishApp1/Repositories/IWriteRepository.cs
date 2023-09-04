@@ -8,6 +8,5 @@ namespace FishApp1.Repositories
         void Remove(T item);
 
         void Save();
-
     }
 }

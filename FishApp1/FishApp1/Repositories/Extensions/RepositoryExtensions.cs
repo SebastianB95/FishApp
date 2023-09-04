@@ -1,6 +1,4 @@
-﻿
-
-using FishApp1.Data.Entities;
+﻿using FishApp1.Data.Entities;
 
 namespace FishApp1.Repositories.Extensions
 {
